@@ -12,6 +12,23 @@ using Test
 
 include("palindrome_products.jl")
 
+# Utility function
+function assertFactorsEqual(actual, expected)
+    actual_test = copy(actual)
+    expected_text = copy(expected)
+
+    for item in actual_test
+        sort!(item)
+    end
+
+    for item in expected_text
+        sort!(item)
+    end
+
+
+    sort(actual) == sort(expected)
+end
+
 
 # Tests adapted from `problem-specifications//canonical-data.json` @ v1.2.0
 println("\n"^2, "-"^60, "\n"^3)
@@ -101,19 +118,3 @@ end
 println()
 
 
-# Utility function
-function assertFactorsEqual(actual, expected)
-    actual_test = copy(actual)
-    expected_text = copy(expected)
-
-    for item in actual_test
-        sort!(item)
-    end
-
-    for item in expected_text
-        sort!(item)
-    end
-
-
-    sort(actual) == sort(expected)
-end
